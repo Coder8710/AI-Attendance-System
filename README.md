@@ -1,95 +1,116 @@
-Face Recognition Attendance System using ArcFace & Firebase
-This project is a real-time face recognition-based attendance system. It includes two main functionalities:
 
-User Registration: Register users by capturing multiple facial expressions.
+# 📸 Face Recognition Attendance System using ArcFace & Firebase
 
-Attendance Detection: Recognize users in real-time using webcam and mark attendance with a click.
+A **real-time face recognition-based attendance system** using [InsightFace](https://github.com/deepinsight/insightface)'s ArcFace model and Firebase Realtime Database.
 
-It uses InsightFace's ArcFace model for highly accurate facial recognition and Firebase Realtime Database for storing user data and attendance history.
+---
 
-💡 Features
-Real-time face detection and recognition using webcam
+## 🚀 Features
 
-Robust registration process with multiple facial angles
+✅ Real-time face detection and recognition using webcam  
+✅ Multi-angle user registration with 6 facial expressions  
+✅ Tkinter-based interactive GUI  
+✅ Attendance marking with live timestamp  
+✅ Firebase Realtime Database integration for cloud storage
 
-Clean GUI using Tkinter
+---
 
-Attendance marking with timestamp
+## 🧰 Requirements
 
-Firebase integration for cloud-based storage
+Install Python libraries:
 
-🛠️ Requirements
-Install the following packages using pip:
-
-bash
-Copy
-Edit
+```bash
 pip install opencv-python pillow numpy firebase-admin insightface
-⚠️ You also need:
+```
 
-A working webcam
+Additional:
+- A working webcam
+- Firebase project & service account JSON
 
-A Firebase Realtime Database setup with service account credentials (JSON file)
+---
 
-🏗️ Project Structure
-bash
-Copy
-Edit
-├── arcface_register.py     # GUI for new user registration
-├── arcface_detect.py       # GUI for real-time attendance detection
-├── YOUR_SERVICE_ACCOUNT_KEY.json  # Firebase service account key (not provided)
-├── YOUR_COLLEGE_LOGO.jpg   # Optional: Logo image to display in UI
-🔧 Firebase Setup
-Create a Firebase project at console.firebase.google.com
+## 📂 Project Structure
 
-Add a Realtime Database and set read/write rules appropriately
+```
+├── arcface_register.py         # GUI to register new users
+├── arcface_detect.py           # GUI to detect and mark attendance
+├── YOUR_SERVICE_ACCOUNT_KEY.json  # Firebase credentials (add your file)
+├── YOUR_COLLEGE_LOGO.jpg       # Optional: GUI branding image
+```
 
-Generate a service account key (.json) and download it
+---
 
-Place it in your project folder and replace this line in both Python files:
+## 🔧 Firebase Setup
 
-python
-Copy
-Edit
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project
+3. Add **Realtime Database** and click **Start in test mode**
+4. Go to **Project Settings > Service Accounts > Generate new private key** → download JSON
+5. Place the JSON file in your project directory and replace this line in both `.py` files:
+
+```python
 cred = credentials.Certificate("YOUR_SERVICE_ACCOUNT_KEY.json")
-Replace the database URL:
+```
 
-python
-Copy
-Edit
+Also replace the database URL:
+```python
 "databaseURL": "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com/"
-🚀 How to Use
-1. Register New User
+```
+
+---
+
+## 📝 How to Use
+
+### 👤 1. Register a New User
+
 Run:
 
-bash
-Copy
-Edit
+```bash
 python arcface_register.py
-Enter Full Name, Roll Number, and Year
+```
 
-Follow guided steps like looking in different directions and smiling
+Steps:
+- Fill in **Name**, **Roll Number**, and **Year**
+- Follow instructions: Look straight, left, right, up, down, smile
+- Each pose captures 3 images for better accuracy
+- Registration is saved to Firebase
 
-Click "Capture Face" at each step
+---
 
-After all steps, the user is saved to Firebase
+### 🧑‍💻 2. Detect & Mark Attendance
 
-2. Mark Attendance
 Run:
 
-bash
-Copy
-Edit
+```bash
 python arcface_detect.py
-The webcam opens
+```
 
-If a face matches a registered user, their details will appear
+Steps:
+- The webcam opens automatically
+- If a face is recognized, user details appear
+- Click “**Mark Attendance**” to save the timestamp
 
-Click "Mark Attendance" to log the time and date
+---
 
-📦 Future Improvements
-Admin login dashboard for viewing attendance logs
+## 📌 Notes
 
-Email/SMS alerts
+- Make sure Firebase credentials and database URL are correctly set
+- You can add a custom college logo (`YOUR_COLLEGE_LOGO.jpg`) for better branding
+- To handle multiple users, register each one individually
 
-Mobile version using Flutter/Kivy
+---
+
+## 🌱 Future Enhancements
+
+- Web-based dashboard to view attendance logs  
+- Export to Excel/CSV  
+- OTP/email verification  
+- Mobile app using Flutter/Kivy
+
+---
+
+## 📜 License
+
+This project is open-source and free for educational or personal use.
+
+---
